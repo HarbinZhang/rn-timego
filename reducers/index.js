@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import activitySlot from './activitySlot'
+import activitySlots from './activitySlots'
+import currentTimeIndex from './currentTimeIndex'
 
 export default combineReducers({
-	activitySlot,
+	activitySlots,
+	currentTimeIndex,
 })

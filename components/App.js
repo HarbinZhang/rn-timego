@@ -10,8 +10,6 @@ import AppNavigator from '../navigation/AppNavigator';
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
 
-  console.log('okokok')
-
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading

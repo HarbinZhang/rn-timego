@@ -11,9 +11,16 @@ import {
 } from 'react-native';
 
 import { MonoText } from '../components/StyledText';
+import TextButton from '../components/TextButton';
+import ActivitySlotInput from '../components/ActivitySlotInput';
+import ActivitySlotList from '../components/ActivitySlotList';
 
 export default function HomeScreen() {
   return (
-      <Text>test</Text>
+    <View>
+      <ActivitySlotList/>
+      <ActivitySlotInput/>
+      <TextButton style={{padding: 10}}>hi</TextButton>
+    </View>
   )
 }
