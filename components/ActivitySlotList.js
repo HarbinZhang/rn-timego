@@ -4,7 +4,13 @@ import { purple, white } from '../utils/colors'
 import {connect} from 'react-redux'
 import ActivitySlot from './ActivitySlot'
 
+import { handleInitialData } from '../actions/shared'
+
 class ActivitySlotList extends Component {
+
+  componentDidMount() {
+    this.props.dispatch(handleInitialData())
+  }
 
   render() {
     const {activitySlots} = this.props

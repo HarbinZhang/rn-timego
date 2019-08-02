@@ -8,6 +8,11 @@
     "eject": "expo eject",
     "test": "jest --watchAll"
   },
+  "rnpm": {
+    "assets": [
+      "assets/fonts"
+    ]
+  },
   "jest": {
     "preset": "jest-expo"
   },
