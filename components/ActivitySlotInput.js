@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Platform } from 'react-native'
-import { Button } from 'react-native-elements';
+import { Button, ButtonGroup } from 'react-native-elements';
 import TimeGoIcon from './TimeGoIcon'
 import { purple, white } from '../utils/colors'
 import { connect } from 'react-redux'
 import { addActivitySlot } from '../actions/activitySlot.js'
 import { generateTimeKey } from '../utils/helpers'
+
+
+const defaultIconList = ['working', 'study', 'game', 'gym', 'sleep', 'waste', 'more']
 
 class ActivitySlotInput extends Component {
 
@@ -14,9 +17,18 @@ class ActivitySlotInput extends Component {
     this.state = {
       hour: '',
       minute: '',
+      selectedIndex: 0,
+      selectedActivity: defaultIconList[0],
     };
+    this.updateIndex = this.updateIndex.bind(this)
   }
 
+  updateIndex = (selectedIndex) => {
+    this.setState({
+      selectedIndex: selectedIndex,
+      selectedActivity: defaultIconList[selectedIndex]
+    });
+  }
   submit = () => {
 
     const { activitySlots } = this.props
@@ -33,64 +45,36 @@ class ActivitySlotInput extends Component {
 
     this.props.dispatch(addActivitySlot({
       [key]: {
-        'activity': 'null',
+        'activity': this.state.selectedActivity,
         'duration': parseInt(hour) * 60 + parseInt(minute),
         'startIndex': currentTimeIndex,
         'efficiency': '100',
         'addedOn': key,
         'hour': hour,
         'minute': minute,
+        'id': key,
       }
     }))
   }
 
+
   render() {
+    const buttons = defaultIconList.map(item => {
+      return { element: () => <TimeGoIcon name={item} size={20} /> }
+    })
+    const { selectedIndex } = this.state
     return (
-      <View>
+
+      <View style={styles.container}>
+
         <Text style={styles.headerText}>TimeInput</Text>
-        <View style={styles.row}>
-          <View style={styles.inputWrap}>
-            <Button
-              title="study"
-              type="outline"
-              icon={{
-                name: "book",
-              }}
-            />
-          </View>
-          <View style={styles.inputWrap}>
-            <Button
-              title="entertain"
-              type="outline"
-              icon={{
-                name: "gamepad",
-              }}
-            />
-          </View>
-          <View style={styles.inputWrap}>
-            <Button
-              title="exercise"
-              type="outline"
-              icon={
-                <TimeGoIcon
-                  name='read'
-                />
-              }
-            />
-          </View>
-          <View style={styles.inputWrap}>
-            <Button
-              title="study"
-              type="outline"
-              icon={
-                <TimeGoIcon
-                  name='study'
-                  fontSize='56'
-                />
-              }
-            />
-          </View>
-        </View>
+
+        <ButtonGroup
+          onPress={this.updateIndex}
+          selectedIndex={selectedIndex}
+          buttons={buttons}
+          containerStyle={{ height: 35 }} />
+
         <View style={styles.row}>
           <View style={styles.inputWrap}>
             <TextInput
@@ -121,11 +105,21 @@ class ActivitySlotInput extends Component {
 
 }
 
+function SubmitBtn({ onPress }) {
+  return (
+    <TouchableOpacity
+      style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
+      onPress={onPress}>
+      <Text style={styles.submitBtnText}>SUBMIT</Text>
+    </TouchableOpacity>
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    // flex: 1,
+    // alignSelf: 'baseline',
+    // justifyContent: 'flex-xend',
   },
   row: {
     flexDirection: 'row',
@@ -178,15 +172,7 @@ const styles = StyleSheet.create({
   }
 })
 
-function SubmitBtn({ onPress }) {
-  return (
-    <TouchableOpacity
-      style={Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn}
-      onPress={onPress}>
-      <Text style={styles.submitBtnText}>SUBMIT</Text>
-    </TouchableOpacity>
-  )
-}
+
 
 function mapStateToProps({ activitySlots }) {
 

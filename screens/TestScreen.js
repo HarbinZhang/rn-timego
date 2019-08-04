@@ -19,10 +19,36 @@ import ActivitySlotList from '../components/ActivitySlotList';
 export default function HomeScreen() {
 
   return (
-    <View>
-      <ActivitySlotList/>
-      <ActivitySlotInput/>
-      <TextButton style={{padding: 10}}>hi</TextButton>
+    <View style={styles.container}>
+      <ActivitySlotList style={styles.activitySlotList}/>
+      <ActivitySlotInput style={styles.activitySlotInput}/>
     </View>
   )
+
+
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    // alignContent: 'stretch',
+    padding: 20,
+    // justifyContent: 'space-between',
+  },
+  row: {
+    flexDirection: 'row',
+    flex: 1,
+    alignItems: 'center',
+  },
+  activitySlotList: {
+    flex: 4,
+  },
+  ActivitySlotInput: {
+    flex: 1,
+    paddingBottom: 20,
+    backgroundColor: '#ff0',
+    alignSelf: 'flex-end',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  },
+})

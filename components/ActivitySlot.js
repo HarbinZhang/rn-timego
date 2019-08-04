@@ -5,6 +5,8 @@ import { purple, white } from '../utils/colors'
 import { connect } from 'react-redux'
 import { removeActivitySlot } from '../actions/activitySlot'
 
+
+
 class ActivitySlot extends Component {
 
 
@@ -15,20 +17,24 @@ class ActivitySlot extends Component {
   }
 
   click = () => {
-    this.props.dispatch(removeActivitySlot(this.props.id))
+    this.props.dispatch(removeActivitySlot(this.props.activitySlot.id))
   }
 
   render() {
 
-    const { id, activitySlot } = this.props
+    const { activitySlot } = this.props
 
     const {activity, duration, efficiency} = activitySlot
     return (
       <ListItem
         Component={TouchableOpacity}
+        friction={90}
+        containerStyle={styles.containerStyle}
+        contentContainerStyle={styles.activityContentContainer}
         title={activity}
         subtitle={this.durationToString(duration)}
         onPress={this.click}
+        color={purple}
       />
     )
   }
@@ -40,12 +46,17 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  containerStyle: {
+    backgroundColor: '#FF9800',
+  },
+  activityContentContainer: {
+    backgroundColor: '#F44336',
+  }
 })
 
-function mapStateToProps({ id, activitySlot }) {
+function mapStateToProps({ activitySlot }) {
 
   return {
-    id,
     activitySlot,
   }
 }
