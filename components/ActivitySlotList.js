@@ -23,6 +23,7 @@ class ActivitySlotList extends Component {
         renderItem={({ item, index }) =>
           <ActivitySlot key={index} activitySlot={item} />
         }
+        
       />
     )
   }

@@ -16,24 +16,33 @@ import ActivitySlotInput from '../components/ActivitySlotInput';
 import ActivitySlotList from '../components/ActivitySlotList';
 
 
-export default function HomeScreen() {
+export default function TestScreen() {
 
   return (
     <View style={styles.container}>
-      <ActivitySlotList style={styles.activitySlotList}/>
-      <ActivitySlotInput style={styles.activitySlotInput}/>
+      <View style={{ flex: 1, paddingHorizontal: 10}}>
+        <ActivitySlotList style={styles.activitySlotList} />
+      </View>
+      <View style={{ height: 170 }}>
+        <ActivitySlotInput style={styles.activitySlotInput} />
+      </View>
     </View>
   )
 
 
 }
 
+TestScreen.navigationOptions = {
+  title: 'Today',
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     // alignContent: 'stretch',
-    padding: 20,
-    // justifyContent: 'space-between',
+    // paddingHorizontal: 20,
+    justifyContent: 'center',
+    backgroundColor: '#fff',
   },
   row: {
     flexDirection: 'row',
@@ -41,14 +50,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   activitySlotList: {
-    flex: 4,
+    flex: 1,
   },
   ActivitySlotInput: {
     flex: 1,
-    paddingBottom: 20,
+    // paddingBottom: 20,
     backgroundColor: '#ff0',
-    alignSelf: 'flex-end',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    // alignSelf: 'flex-end',
+    // justifyContent: 'flex-end',
+    // alignItems: 'flex-end',
   },
 })
