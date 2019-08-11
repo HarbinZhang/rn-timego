@@ -4,14 +4,14 @@ import { submitActivitySlot, removeActivitySlot } from '../utils/api'
 export default function activitySlots (state = {}, action) {
 	switch (action.type) {
 		case ADD_ACTIVITY_SLOT:
-			submitActivitySlot(action.activitySlot)
+			submitActivitySlot(action.activitySlot, action.activitySlotsTimeKey)
 			return {
 				...state,
 				...action.activitySlot,
 			}
 		case REMOVE_ACTIVITY_SLOT:
 			const key = action.activitySlotId
-			removeActivitySlot(key)
+			removeActivitySlot(key, action.activitySlotsTimeKey)
 			state[key] = undefined
 			delete state[key]
 			return {

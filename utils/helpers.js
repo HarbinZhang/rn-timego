@@ -1,10 +1,22 @@
 
 
-export function timeToString (time = Date.now()) {
+export function timeToString(time = Date.now()) {
   const date = new Date(time)
-  const todayUTC = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-  return todayUTC.toISOString().split('T')[0]
+  return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDate()
 }
+
 export function generateTimeKey() {
-	return new Date().getTime();
+  return new Date().getTime();
+}
+
+
+export function headerTitleToTimeKey(prefix, headerTitle) {
+  switch (headerTitle) {
+    case 'Today':
+      return prefix + timeToString()
+    case 'Yesterday':
+      return prefix + timeToString(Date.now() - 86400000)
+    default:
+      return ""
+  }
 }

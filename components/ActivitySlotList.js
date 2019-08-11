@@ -6,11 +6,24 @@ import ActivitySlot from './ActivitySlot'
 
 import { handleInitialData } from '../actions/shared'
 import { FlatList } from 'react-native-gesture-handler';
+import { headerTitleToTimeKey } from '../utils/helpers';
+import { ACTIVITY_SLOTS_KEY } from '../utils/_activitySlot'
 
 class ActivitySlotList extends Component {
 
+  constructor(props) {
+    super(props)
+  }
+
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
+    this.props.dispatch(handleInitialData(headerTitleToTimeKey(ACTIVITY_SLOTS_KEY, this.props.headerTitle)))
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.headerTitle !== prevProps.headerTitle) {
+      console.log(this.props.headerTitle)
+      this.props.dispatch(handleInitialData(headerTitleToTimeKey(ACTIVITY_SLOTS_KEY, this.props.headerTitle)))
+    }
   }
 
   render() {
@@ -21,9 +34,8 @@ class ActivitySlotList extends Component {
         keyExtractor={(item, index) => index.toString()}
         data={Object.values(activitySlots)}
         renderItem={({ item, index }) =>
-          <ActivitySlot key={index} activitySlot={item} />
+          <ActivitySlot key={index} activitySlot={item} headerTitle={this.props.headerTitle} />
         }
-        
       />
     )
   }

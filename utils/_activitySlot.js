@@ -1,3 +1,3 @@
 
 
-export const ACTIVITY_SLOTS_KEY = 'Test:activitySlots'
+export const ACTIVITY_SLOTS_KEY = 'ACTIVITY_SLOTS_KEY:'

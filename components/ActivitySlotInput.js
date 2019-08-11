@@ -5,9 +5,10 @@ import TimeGoIcon from './TimeGoIcon'
 import { purple, white } from '../utils/colors'
 import { connect } from 'react-redux'
 import { addActivitySlot } from '../actions/activitySlot.js'
-import { generateTimeKey } from '../utils/helpers'
+import { headerTitleToTimeKey, generateTimeKey } from '../utils/helpers'
 import { defaultIconList, efficiencyNames } from '../utils/_DATA'
 // import Slider from '@react-native-community/slider';
+import { ACTIVITY_SLOTS_KEY } from '../utils/_activitySlot'
 
 
 
@@ -59,7 +60,7 @@ class ActivitySlotInput extends Component {
         'minute': minute,
         'id': key,
       }
-    }))
+    },headerTitleToTimeKey(ACTIVITY_SLOTS_KEY, this.props.headerTitle)))
   }
 
   updateRating = (rating) => {
@@ -102,7 +103,7 @@ class ActivitySlotInput extends Component {
           <Slider
             style={{ flex: 1, height: 40, marginLeft: 2 }}
             minimumValue={0}
-            maximumValue={24}
+            maximumValue={8}
             step={1}
             // thumbTintColor={purple}
             value={this.state.hour}

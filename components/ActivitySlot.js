@@ -7,6 +7,9 @@ import { connect } from 'react-redux'
 import { removeActivitySlot } from '../actions/activitySlot'
 import {efficiencyNames} from '../utils/_DATA'
 
+import { ACTIVITY_SLOTS_KEY } from '../utils/_activitySlot'
+import { headerTitleToTimeKey } from '../utils/helpers'
+
 
 class ActivitySlot extends Component {
 
@@ -18,7 +21,8 @@ class ActivitySlot extends Component {
   }
 
   click = () => {
-    this.props.dispatch(removeActivitySlot(this.props.activitySlot.id))
+    // alert(this.props.activitySlot.id)
+    this.props.dispatch(removeActivitySlot(this.props.activitySlot.id, headerTitleToTimeKey(ACTIVITY_SLOTS_KEY, this.props.headerTitle)))
   }
 
   render() {
@@ -51,16 +55,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   containerStyle: {
-    backgroundColor: '#FF9800',
+    backgroundColor: '#99ccff',
     borderRadius: 20,
     borderWidth: 2,
     margin:2,
   },
   activityContentContainer: {
-    backgroundColor: '#F44336',
+    backgroundColor: '#CCFFCC',
   },
   titleStyle: {
-    backgroundColor: '#FFFF00',
+    backgroundColor: '#FFCC99',
     alignSelf: 'center',
   }
 })

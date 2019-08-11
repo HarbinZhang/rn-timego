@@ -1,24 +1,26 @@
 import { AsyncStorage } from 'react-native'
-import { ACTIVITY_SLOTS_KEY } from './_activitySlot'
 
-
-
-export function fetchActivitySlots() {
-  return AsyncStorage.getItem(ACTIVITY_SLOTS_KEY)
+export function fetchActivitySlots(activitySlotsTimeKey) {
+  return AsyncStorage.getItem(activitySlotsTimeKey)
 }
 
-export function submitActivitySlot ( activitySlot ) {
-  return AsyncStorage.mergeItem(ACTIVITY_SLOTS_KEY, JSON.stringify(
+export function submitActivitySlot ( activitySlot, activitySlotsTimeKey ) {
+  return AsyncStorage.mergeItem(activitySlotsTimeKey, JSON.stringify(
     activitySlot
   ))
 }
 
-export function removeActivitySlot ( activitySlotId ) {
-  return AsyncStorage.getItem(ACTIVITY_SLOTS_KEY)
+export function removeActivitySlot ( activitySlotId, activitySlotsTimeKey ) {
+  // TODO
+  return AsyncStorage.getItem(activitySlotsTimeKey)
     .then((res) => {
       const data = JSON.parse(res)
       data[activitySlotId] = undefined
       delete data[activitySlotId]
-      AsyncStorage.setItem(ACTIVITY_SLOTS_KEY, JSON.stringify(data))
+      AsyncStorage.setItem(activitySlotsTimeKey, JSON.stringify(data))
     })
+}
+
+export function getAllActivitySlotsKeys() {
+  return AsyncStorage.getAllKeys()
 }

@@ -1,4 +1,4 @@
-import { fetchActivitySlots } from '../utils/api'
+import { fetchActivitySlots, getAllActivitySlotsKeys } from '../utils/api'
 import { receiveActivitySlots } from '../actions/activitySlot'
 
 
@@ -19,13 +19,22 @@ import { receiveActivitySlots } from '../actions/activitySlot'
 
 
 
-export function handleInitialData() {
+export function handleInitialData(activitySlotsTimeKey) {
   return (dispatch) => {
     // dispatch(startLoading())
-    return fetchActivitySlots()
+    return fetchActivitySlots(activitySlotsTimeKey)
       .then(activitySlots => {
         console.log(activitySlots)
         dispatch(receiveActivitySlots(JSON.parse(activitySlots)))
+      })
+  }
+}
+
+export function handleAllActivitySlotsKeys() {
+  return (dispatch) => {
+    return getAllActivitySlotsKeys()
+      .then(keys => {
+        console.log(keys)
       })
   }
 }
