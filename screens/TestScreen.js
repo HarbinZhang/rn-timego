@@ -79,7 +79,7 @@ export default class TestScreen extends Component {
             <TouchableOpacity
               style={styles.HeaderButton}
               onPress={navigation.getParam('showMenu')}
-              >
+            >
               <Text>{navigation.getParam('headerTitle')}</Text>
             </TouchableOpacity>}
         >
@@ -100,10 +100,10 @@ export default class TestScreen extends Component {
     return (
       <View style={styles.container} current>
         <View style={{ flex: 1, paddingHorizontal: 10 }}>
-          <ActivitySlotList style={styles.activitySlotList} headerTitle={this.state.headerTitle}/>
+          <ActivitySlotList style={styles.activitySlotList} headerTitle={this.state.headerTitle} />
         </View>
         <View style={{ height: 170 }}>
-          <ActivitySlotInput style={styles.activitySlotInput} headerTitle={this.state.headerTitle}/>
+          <ActivitySlotInput style={styles.activitySlotInput} headerTitle={this.state.headerTitle} />
         </View>
       </View>
     )
@@ -150,6 +150,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 5,
     // paddingHorizontal: 55,
+    marginHorizontal: 10,
+    marginVertical: 10,
     width: 150,
     borderRadius: 10,
     borderWidth: 2,

@@ -10,7 +10,7 @@ import TestScreen from '../screens/TestScreen';
 
 const config = Platform.select({
   web: { headerMode: 'screen' },
-  default: {},
+  default: { headerLayoutPreset: 'center' },
 });
 
 const TestStack = createStackNavigator(
