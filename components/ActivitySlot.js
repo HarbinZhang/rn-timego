@@ -10,6 +10,7 @@ import {efficiencyNames} from '../utils/_DATA'
 import { ACTIVITY_SLOTS_KEY } from '../utils/_activitySlot'
 import { headerTitleToTimeKey } from '../utils/helpers'
 
+import { activityToColor, activityColorList } from '../utils/_DATA'
 
 class ActivitySlot extends Component {
 
@@ -28,13 +29,14 @@ class ActivitySlot extends Component {
   render() {
 
     const { activitySlot } = this.props
-
     const {activity, duration, efficiency} = activitySlot
+    const activityColor = activityColorList[activityToColor[activity]]
+
     return (
       <ListItem
         Component={TouchableOpacity}
         friction={90}
-        containerStyle={styles.containerStyle}
+        containerStyle={StyleSheet.flatten([styles.containerStyle, {backgroundColor: activityColor}])}
         contentContainerStyle={styles.activityContentContainer}
         title={efficiencyNames[efficiency]}
         titleStyle={styles.titleStyle}
@@ -48,6 +50,8 @@ class ActivitySlot extends Component {
   }
 }
 
+
+
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
@@ -55,16 +59,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   containerStyle: {
-    backgroundColor: '#99ccff',
+    // backgroundColor: '#99ccff',
     borderRadius: 20,
     borderWidth: 2,
     margin:2,
   },
   activityContentContainer: {
-    backgroundColor: '#CCFFCC',
   },
   titleStyle: {
-    backgroundColor: '#FFCC99',
     alignSelf: 'center',
   }
 })
