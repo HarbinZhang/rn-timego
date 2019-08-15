@@ -148,10 +148,11 @@ const styles = StyleSheet.create({
   },
   HeaderButton: {
     alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 5,
     // paddingHorizontal: 55,
-    marginHorizontal: 10,
-    marginVertical: 10,
+    // marginHorizontal: 10,
+    // marginVertical: 2,
     width: 150,
     borderRadius: 10,
     borderWidth: 2,

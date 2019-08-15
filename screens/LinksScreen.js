@@ -1,18 +1,20 @@
-import React from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import React, { Component } from 'react';
+import { ScrollView, StyleSheet, View, Text } from 'react-native';
 import { handleAllActivitySlotsKeys } from '../actions/shared'
 import { getAllActivitySlotsKeys } from '../utils/api'
-export default function LinksScreen() {
 
-  // handleAllActivitySlotsKeys()
-  // console.log(keys)
-  getAllActivitySlotsKeys().then(keys => {console.log(keys)})
+import { PieChart } from 'react-native-svg-charts'
+import DailyStat from '../components/DailyStat'
 
-  return (
-    <ScrollView style={styles.container}>
-      <Text> hi </Text>
-    </ScrollView>
-  );
+
+export default class LinksScreen extends Component {
+
+
+  render() {
+    return (
+      <DailyStat />
+    )
+  }
 }
 
 LinksScreen.navigationOptions = {
