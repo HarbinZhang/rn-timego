@@ -4,7 +4,8 @@ import { handleAllActivitySlotsKeys } from '../actions/shared'
 import { getAllActivitySlotsKeys } from '../utils/api'
 
 import { PieChart } from 'react-native-svg-charts'
-import DailyStat from '../components/DailyStat'
+import DailyStatForActivity from '../components/DailyStatForActivity'
+import DailyStatForEventType from '../components/DailyStatForEventType'
 
 
 export default class LinksScreen extends Component {
@@ -12,13 +13,13 @@ export default class LinksScreen extends Component {
 
   render() {
     return (
-      <DailyStat />
+      <DailyStatForEventType />
     )
   }
 }
 
 LinksScreen.navigationOptions = {
-  title: 'Links',
+  title: 'Stat',
 };
 
 const styles = StyleSheet.create({

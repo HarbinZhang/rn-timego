@@ -5,12 +5,12 @@ import TimeGoIcon from './TimeGoIcon'
 import { purple, white } from '../utils/colors'
 import { connect } from 'react-redux'
 import { removeActivitySlot } from '../actions/activitySlot'
-import {efficiencyNames} from '../utils/_DATA'
+import { efficiencyNames } from '../utils/_DATA'
 
 import { ACTIVITY_SLOTS_KEY } from '../utils/_activitySlot'
 import { headerTitleToTimeKey } from '../utils/helpers'
 
-import { activityToColor, activityColorList } from '../utils/_DATA'
+import { activityToEventType, activityColorList } from '../utils/_DATA'
 
 class ActivitySlot extends Component {
 
@@ -29,14 +29,14 @@ class ActivitySlot extends Component {
   render() {
 
     const { activitySlot } = this.props
-    const {activity, duration, efficiency} = activitySlot
-    const activityColor = activityColorList[activityToColor[activity]]
+    const { activity, duration, efficiency } = activitySlot
+    const activityColor = activityColorList[activityToEventType[activity]]
 
     return (
       <ListItem
         Component={TouchableOpacity}
         friction={90}
-        containerStyle={StyleSheet.flatten([styles.containerStyle, {backgroundColor: activityColor}])}
+        containerStyle={StyleSheet.flatten([styles.containerStyle, { backgroundColor: activityColor }])}
         contentContainerStyle={styles.activityContentContainer}
         title={efficiencyNames[efficiency]}
         titleStyle={styles.titleStyle}
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     // backgroundColor: '#99ccff',
     borderRadius: 20,
     borderWidth: 2,
-    margin:2,
+    margin: 2,
   },
   activityContentContainer: {
   },

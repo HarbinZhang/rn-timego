@@ -98,7 +98,7 @@ class ActivitySlotInput extends Component {
           buttons={buttons}
           containerStyle={{ height: 45 }} />
 
-        {/* <View style={{ flexDirection: 'row', }}>
+        <View style={{ flexDirection: 'row', }}>
           <Slider
             style={{ flex: 1, height: 40, marginLeft: 2 }}
             minimumValue={0}
@@ -117,7 +117,7 @@ class ActivitySlotInput extends Component {
             value={this.state.minute}
             onValueChange={value => this.setState({ minute: value })}
           />
-        </View> */}
+        </View>
 
         <View >
 

@@ -4,13 +4,15 @@ import {
   Dimensions
 } from 'react-native';
 import { PieChart } from 'react-native-svg-charts'
-import { Text } from 'react-native-svg'
+import { Text, G, Circle } from 'react-native-svg'
 import { connect } from 'react-redux'
 
-import { defaultIconList, activityToColor, activityColorList } from '../utils/_DATA'
+import { defaultIconList, activityToEventType, activityColorList } from '../utils/_DATA'
 
-class DailyStat extends React.PureComponent {
-  
+import TimeGoIcon from './TimeGoIcon'
+
+class DailyStatForActivity extends React.PureComponent {
+
 
   render() {
 
@@ -20,19 +22,26 @@ class DailyStat extends React.PureComponent {
       return slices.map((slice, index) => {
         const { labelCentroid, pieCentroid, data } = slice;
         return (
-          <Text
+
+          <G
             key={index}
             x={pieCentroid[0]}
             y={pieCentroid[1]}
-            fill={'black'}
-            textAnchor={'middle'}
-            alignmentBaseline={'middle'}
-            fontSize={24}
-            // stroke={'black'}
-            // strokeWidth={0.2}
           >
-            {data.duration > 0 && data.duration}
-          </Text>
+            {/* <Text
+              key={index}
+              x={pieCentroid[0]}
+              y={pieCentroid[1]}
+              fill={'black'}
+              textAnchor={'middle'}
+              alignmentBaseline={'middle'}
+              fontSize={24}
+            >
+              {data.duration > 0 && data.duration}
+            </Text>
+             */}
+            {/* { data.duration > 0 && <TimeGoIcon name='working' size={20} />} */}
+          </G>
         )
       })
     }
@@ -55,28 +64,26 @@ class DailyStat extends React.PureComponent {
 
 function mapStateToProps({ activitySlots }) {
 
-  console.log(activitySlots)
-  console.log('hello')
 
-  const initalStat = defaultIconList.reduce(function(prev, cur, index) {
+  const initialStat = defaultIconList.reduce(function (prev, cur, index) {
     prev[cur] = {
       'key': index,
       'activity': cur,
       'duration': 0,
       'efficientDuration': 1,
-      svg: {fill : activityColorList[activityToColor[cur]]}
+      svg: { fill: activityColorList[activityToEventType[cur]] }
     }
     return prev
-  },{})
+  }, {})
 
-  const activityStat = Object.values(activitySlots).reduce(function(prev, cur){
+  const activityStat = Object.values(activitySlots).reduce(function (prev, cur) {
     prev[cur.activity].duration += cur.duration
     prev[cur.activity].efficientDuration += cur.efficientDuration * cur.efficiency
-    
-    return prev
-  }, initalStat)
 
-  
+    return prev
+  }, initialStat)
+
+
   return {
     activityStat,
   }
@@ -84,4 +91,4 @@ function mapStateToProps({ activitySlots }) {
 
 
 
-export default connect(mapStateToProps)(DailyStat)
+export default connect(mapStateToProps)(DailyStatForActivity)

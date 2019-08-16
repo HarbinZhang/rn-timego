@@ -65,9 +65,9 @@ const LinksStack = createStackNavigator(
 );
 
 LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+  tabBarLabel: 'Stat',
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'} />
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-stats' : 'md-stats'} />
   ),
 };
 
@@ -91,8 +91,8 @@ SettingsStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   TestStack,
-  HomeStack,
   LinksStack,
+  HomeStack,
   SettingsStack,
 });
 
