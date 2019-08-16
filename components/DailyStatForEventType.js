@@ -33,7 +33,7 @@ class DailyStatForEventType extends React.PureComponent {
             // stroke={'black'}
             // strokeWidth={0.2}
             >
-              {data.duration > 60 && (Math.floor(data.duration/60))+'h '}{data.duration > 0 && data.duration%60+'m'}
+              {data.duration >= 60 && (Math.floor(data.duration/60))+'h '}{data.duration > 0 && data.duration%60+'m'}
             </Text>
           
         )
