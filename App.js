@@ -5,6 +5,12 @@ import React, { useState } from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './reducers'
+import middleware from './middleware'
+
+
 import AppNavigator from './navigation/AppNavigator';
 
 export default function App(props) {
@@ -20,10 +26,12 @@ export default function App(props) {
     );
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
+      <Provider store={createStore(reducer, middleware)}>
+        <View style={styles.container}>
+          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      </Provider>
     );
   }
 }
@@ -40,11 +48,12 @@ async function loadResourcesAsync() {
       // We include SpaceMono because we use it in HomeScreen.js. Feel free to
       // remove this if you are not using it in your app
       'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+      'time-go': require('./assets/fonts/icomoon.ttf'),
     }),
   ]);
 }
 
-function handleLoadingError(error: Error) {
+function handleLoadingError(error) {
   // In this case, you might want to report the error to your error reporting
   // service, for example Sentry
   console.warn(error);
